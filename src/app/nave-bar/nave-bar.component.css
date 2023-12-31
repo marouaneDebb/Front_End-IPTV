@@ -1,0 +1,10 @@
+.navbar{
+    background-color: black;
+}
+.nav-link,.navbar-brand{
+    color: white;
+}
+.navbar-brand{
+    padding-left: 3%;
+    padding-right: 3%;
+}

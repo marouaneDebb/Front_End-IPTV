@@ -3,14 +3,32 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { MovieCartComponent } from './movie-cart/movie-cart.component';
+import { SerchBarComponent } from './serch-bar/serch-bar.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { RouterModule } from '@angular/router';
+import { NaveBarComponent } from './nave-bar/nave-bar.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    MovieCartComponent,
+    SerchBarComponent,
+    MovieDetailsComponent,
+    NaveBarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

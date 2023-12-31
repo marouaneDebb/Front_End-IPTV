@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("C:\Users\Marouane-PC\Desktop\Folders\engineering life\S3\angular\2eme-class\movieLand\src\assets\44.jpg");
+    background-size: cover; /* This will make the background image cover the entire body */
+    background-position: center; /* This will center the background image */
+    background-attachment: fixed;
+    
+}
+

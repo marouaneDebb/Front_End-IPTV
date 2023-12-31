@@ -1,0 +1,25 @@
+  /* Custom styles for the cards */
+  .custom-card {
+    background-color: rgb(250, 250, 250, 0.7); /* Set the background color to gray */
+    margin-bottom: 20px; /* Add some space between cards */
+    transition: transform 0.3s ease-in-out; /* Add scaling transition */
+
+  }
+
+  .custom-card:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    background-color: rgb(250, 250, 250);
+  }
+  .hiden{
+    display: none;
+  }
+  .custom-card:hover .hiden {
+    display: block;
+}
+.container{
+    max-width: 90%;
+}
+.row{
+    margin-top: 30px;
+}
+

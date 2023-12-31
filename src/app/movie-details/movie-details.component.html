@@ -1,0 +1,176 @@
+<div class="detail_container row">
+  <!-- <div class="card col-8 mb-3" style="max-width: 540px" *ngIf="selectedMovie">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w300/' + selectedMovie.poster_path"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">{{ selectedMovie.title }}</h4>
+          <p class="card-text">
+            language: {{ selectedMovie.original_language }}
+          </p>
+          <p class="card-text">
+            release date: {{ selectedMovie.release_date }}
+          </p>
+          <h6 class="card-title">overview</h6>
+          <p class="card-text">{{ selectedMovie.overview }}</p>
+          <p class="card-text">
+            <small class="text-body-secondary"
+              >vote average: {{ selectedMovie.vote_average }} ({{
+                selectedMovie.vote_count
+              }}
+              votes)</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="detail_card">
+    <div class="container row">
+      <div class="poster_img col-4">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w300/' + selectedMovie.poster_path"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="movie_details col-8">
+        <div class="row">
+          <div class="col-10">
+            <h4 class="card-title">{{ selectedMovie.title }}</h4>
+          </div>
+          <div class="coll col-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="43"
+              height="43"
+              [style.fill]="isFavorite ? 'rgb(180, 83, 83)' : 'rgb(74, 67, 67)'"
+              class="bi bi-heart-fill"
+              viewBox="0 0 23 23"
+              (click)="addFavorie()"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+              />
+            </svg>
+          </div>
+        </div>
+        <p class="card-text">language: {{ selectedMovie.original_language }}</p>
+        <p class="card-text">release date: {{ selectedMovie.release_date }}</p>
+        <h6 class="card-title">overview</h6>
+        <p class="card-text">{{ selectedMovie.overview }}</p>
+        <p class="card-text">
+          <small class="text-body-secondary"
+            >vote average: {{ selectedMovie.vote_average }} ({{
+              selectedMovie.vote_count
+            }}
+            votes)</small
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="comments_container row">
+    <div class="comment_place row">
+      <div class="row">
+        <div class="user_img col-1">
+          <img
+            src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1703927241~exp=1703927841~hmac=2efc285753b39d7617e42bc4439cd5bae75d3aa216047f244b42783be07abe7b"
+            alt="user"
+          />
+        </div>
+        <div class="col-11">
+          <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+            <!-- <img
+            class="img-fluid img-responsive rounded-circle mr-2"
+            src="https://i.imgur.com/qdiP4DB.jpg"
+            width="38"
+            style="padding-right: 1%;"
+          /> -->
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="Add comment"
+              [(ngModel)]="commentText"
+            /><button
+              class="btn btn-primary"
+              type="button"
+              (click)="addComment()"
+            >
+              Comment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comments_container row" >
+    <div class="comment_container">
+      <div class="card" *ngFor="let comment of comments">
+        <div class="row1 row"><div class="user_img col-1"><img
+          src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1703927241~exp=1703927841~hmac=2efc285753b39d7617e42bc4439cd5bae75d3aa216047f244b42783be07abe7b"
+          alt="user"
+        /></div>
+        <div class="username col-1">User</div>
+        <div class="commentText col-7">{{comment.comment_Text}}</div>
+        <div class="commentdate col-3"><p class="commentdate">{{comment.comment_Date}}</p></div></div>
+        
+      </div>
+    </div>
+    
+    <!-- <div class="form-floating col-4">
+      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Comments</label>
+    </div> -->
+  </div>
+  <!-- <div class="comments_container row" >
+    <div class="comment_container">
+      <div class="card p-3" *ngFor="let comment of comments">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="user d-flex flex-row align-items-center">
+            <div class="user_img col-1">
+              <img
+                src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1703927241~exp=1703927841~hmac=2efc285753b39d7617e42bc4439cd5bae75d3aa216047f244b42783be07abe7b"
+                alt="user"
+              />
+            </div>
+            <span
+              ><small class="font-weight-bold text-primary">User  </small>
+              <small class="font-weight-bold">{{
+                comment.comment_Text
+              }}</small></span
+            >
+          </div>
+  
+          <small class="comment_Date">{{ comment.comment_Date }}</small>
+        </div>
+  
+        <div
+          class="action d-flex justify-content-between mt-2 align-items-center"
+        >
+          <div class="reply px-4">
+            <small>Remove</small>
+            <span class="dots"></span>
+            <small>Reply</small>
+            <span class="dots"></span>
+            <small>Translate</small>
+          </div>
+  
+          <div class="icons align-items-center">
+            <i class="fa fa-star text-warning"></i>
+            <i class="fa fa-check-circle-o check-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div> -->
+</div>

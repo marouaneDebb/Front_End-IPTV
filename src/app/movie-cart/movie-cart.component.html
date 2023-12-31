@@ -1,0 +1,18 @@
+      <div class="card custom-card" (click)="selectMovie()" [routerLink]="['/details', movie.id]">
+        <img
+          class="scale-up-center"
+          [src]="'https://image.tmdb.org/t/p/w300/' + movie.poster_path"
+          alt="..."
+          class="img-thumbnail"
+        />
+        <div class="card-body">
+          <p>{{ movie.title }}</p>
+          <!-- <p class="hiden">{{ movie.overview }}</p> -->
+          <!-- <input
+            class="hiden"
+            type="checkbox"
+            [checked]="movie.isfavorie"
+            (click)="addfav(movie)"
+          /><label class="hiden">watched</label> -->
+        </div>
+      </div>
