@@ -1,5 +1,5 @@
 <div class="container">
-  <app-nave-bar></app-nave-bar>
+  <app-nave-bar [username]="username"></app-nave-bar>
   <!-- <app-navbar></app-navbar> -->
   <app-serch-bar (searchedMovieChange)="onSearchMovieChange($event)"></app-serch-bar>
   <!-- <select
@@ -35,6 +35,7 @@
   <div class="row">
     <app-movie-cart
     class="col-md-3"
+    [username]="username"
       *ngFor="let movie of searchedMovieList"
       [movie]="movie"
     ></app-movie-cart>

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Comment } from 'src/models/comment';
+
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +11,8 @@ export class movieservice {
   API_TOKEN: any = 'b424100a192da200f90d6caeb63f3eb4';
 
   apiUrl = 'https://api.themoviedb.org/3';
+
+  apiBackendUrl= 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
@@ -27,5 +31,16 @@ export class movieservice {
   getDetailMv(id: number): Observable<any> {
     const url = `${this.apiUrl}/movie/${id}?api_key=${this.API_TOKEN}&language=fr`;
     return this.http.get(url);
+  }
+  addComments(comment:Comment):Observable<Comment>{
+    return this.http.post<Comment>(`${this.apiBackendUrl}/detail/add`, comment)
+  }
+  getComment(movieID:number):Observable<Comment[]>{
+    const url =`${this.apiBackendUrl}/detail/comment/${movieID}`
+
+    return this.http.get<Comment[]>(url)
+  }
+  getAllComment():Observable<Comment[]>{
+    return this.http.get<Comment[]>(`${this.apiBackendUrl}/detail/comment`)
   }
 }

@@ -3,6 +3,8 @@ import { movieservice } from './../../service/movie.service';
 import { Movie } from 'src/models/movie';
 import { FavoriteMovie } from 'src/models/favorite';
 import { FavoriteService } from 'src/service/favorite.service';
+import { User } from 'src/models/user';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -14,9 +16,11 @@ export class HomePageComponent implements OnInit {
   movies!: Movie[];
   searchedMovieList!: Movie[];
   favoriteMovie!: FavoriteMovie;
+  username!:String
 
 
-  constructor(private movieservice: movieservice,private favoriteService: FavoriteService) {
+  constructor(private movieservice: movieservice,private favoriteService: FavoriteService,  private route: ActivatedRoute,
+    ) {
     this.favoriteService.getFavoriteMovie().subscribe((favoriteMovie) => {
       this.favoriteMovie = favoriteMovie;
       console.log("from home page "+favoriteMovie.movieID+favoriteMovie.isFavorite)
@@ -24,6 +28,10 @@ export class HomePageComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.username = params['username'];
+      console.log("welcome "+this.username)
+      
     this.movieservice.getPopularMv().subscribe((data) => {
       this.movies = data.results;
       this.searchedMovieList = data.results;
@@ -32,7 +40,7 @@ export class HomePageComponent implements OnInit {
       console.log(this.favoriteMovie.isFavorite);
 
     });
-  }
+  })}
 
   onSearchMovieChange(searchedMovie: string) {
     this.searchedMovie = searchedMovie;

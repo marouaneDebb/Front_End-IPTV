@@ -10,6 +10,8 @@ export class MovieCartComponent implements OnInit {
 
   constructor(private router: Router) {}
   @Input() movie!: Movie;
+  @Input() username!: String;
+
   @Output() selectedMovieEmit = new EventEmitter<Movie>();
   ngOnInit() {
     
@@ -17,7 +19,8 @@ export class MovieCartComponent implements OnInit {
 
   selectMovie(){
     this.selectedMovieEmit.emit(this.movie);
-    this.router.navigate(['/details', this.movie.id]);
+    console.log(this.movie.id,this.username)
+    this.router.navigate(['/details', this.movie.id,this.username]);
 
   console.log("selected movie"+this.movie.title) }
 }

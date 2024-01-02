@@ -8,3 +8,9 @@
     padding-left: 3%;
     padding-right: 3%;
 }
+.username{
+    color: white;
+    padding-right: 5%;
+    font-size: 1.8vw;
+    font-weight: bold;
+}

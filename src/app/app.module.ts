@@ -11,6 +11,8 @@ import { SerchBarComponent } from './serch-bar/serch-bar.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { RouterModule } from '@angular/router';
 import { NaveBarComponent } from './nave-bar/nave-bar.component';
+import { FavoritePageComponent } from './favorite-page/favorite-page.component';
+import { SignFormsComponent } from './sign-forms/sign-forms.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { NaveBarComponent } from './nave-bar/nave-bar.component';
     MovieCartComponent,
     SerchBarComponent,
     MovieDetailsComponent,
-    NaveBarComponent
+    NaveBarComponent,
+    FavoritePageComponent,
+    SignFormsComponent
   ],
   imports: [
     BrowserModule,

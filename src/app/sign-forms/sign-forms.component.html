@@ -1,0 +1,46 @@
+<div class="body">
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true" />
+
+    <div class="signup">
+      <form>
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input
+          type="text"
+          name="txt"
+          placeholder="User name"
+          required=""
+          [(ngModel)]="entredUserName"
+          [ngClass]="{ 'error-placeholder': userExists }"
+
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required=""
+          [(ngModel)]="entredEmail"
+          [ngClass]="{ 'error-placeholder': userExists }"
+
+        />
+        <input
+          type="password"
+          name="pswd"
+          placeholder="Password"
+          required=""
+          [(ngModel)]="entredPassword"
+        />
+        <button (click)="addUser()">Sign up</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" name="email" placeholder="Email" required="" [(ngModel)]="signMail" [ngClass]="{ 'error-placeholder': userFound }"/>
+        <input type="password" name="pswd" placeholder="Password" required="" [(ngModel)]="signPassword" [ngClass]="{ 'error-placeholder': userFound }"/>
+        <button [routerLink]="[userFound ? '/home' : '/',userFrontRout.username]" (click)="signIn()">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

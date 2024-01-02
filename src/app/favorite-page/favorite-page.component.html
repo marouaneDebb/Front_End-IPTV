@@ -1,0 +1,48 @@
+<div class="container">
+    <app-nave-bar [username]="username"></app-nave-bar>
+    <!-- <app-navbar></app-navbar> -->
+    <app-serch-bar (searchedMovieChange)="onSearchMovieChange($event)"></app-serch-bar>
+    <!-- <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="movieFilter"
+      >
+        <option value="0">all</option>
+        <option value="1">watched</option>
+        <option value="2">unwatched</option>
+      </select> -->
+  
+    <!-- <div *ngIf="filterdMOvies.length==0 ; then noitem else showitem"></div>
+    
+        <ng-template #noitem>
+            <p>the watched list is empty</p>
+        </ng-template>
+    
+        <ng-template #showitem>
+            <div class="row">
+                <div class="col-md-3" *ngFor="let movie of filterdMOvies">
+                  <div class="card custom-card">
+                    <img class="scale-up-center" [src]="movie.src" alt="..." class="img-thumbnail">
+                    <div class="card-body">
+                        <p>{{ movie.title }}</p>
+                        <p class="hiden">{{ movie.discreption }}</p>
+                        <input class="hiden" type="checkbox" [checked]="movie.isfavorie" (click)="addfav(movie)"><label class="hiden">watched</label>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </ng-template> -->
+    <div class="row">
+      <app-movie-cart
+      class="col-md-3"
+        *ngFor="let movie of searchedMovieList"
+        [movie]="movie" [username]="username"
+      ></app-movie-cart>
+    </div>
+  
+    <!-- <div class="col-md-3" *ngFor="let movie of movieListV2">
+        <p>{{movie.title}}</p>
+    
+    </div> -->
+  </div>
+  

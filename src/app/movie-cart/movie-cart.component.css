@@ -1,7 +1,7 @@
   /* Custom styles for the cards */
   .custom-card {
     background-color: rgb(250, 250, 250, 0.7); /* Set the background color to gray */
-    margin-bottom: 20px; /* Add some space between cards */
+    margin-bottom: 20%; /* Add some space between cards */
     transition: transform 0.3s ease-in-out; /* Add scaling transition */
 
   }
