@@ -25,18 +25,18 @@ export class FavoriteService {
     return this.http.post<FavoriteMovieBack>(`http://localhost:8080/favorites/add`, FavoriteBack)
   }
 
-  getFavoriteByMovieID(movieID: number): Observable<FavoriteMovieBack> {
+  getFavoriteByMovieID(movieID: number,username:String): Observable<FavoriteMovieBack> {
     // const url = `http://localhost:8080/favorites/get/${movieID}`;
-    return this.http.get<FavoriteMovieBack>(`http://localhost:8080/favorites/favorite/${movieID}`)
+    return this.http.get<FavoriteMovieBack>(`http://localhost:8080/favorites/favorite/${movieID}/${username}`)
   }
 
   // Add method to delete favorite by movieID
 
-  deleteFavoriteByMovieID(movieID: number): Observable<any> {
-    const url = `http://localhost:8080/favorites/delete/${movieID}`;
+  deleteFavoriteByMovieID(movieID: number,username:String): Observable<any> {
+    const url = `http://localhost:8080/favorites/delete/${movieID}/${username}`;
     return this.http.delete(url);
   }
-  getAllFavorites():Observable<FavoriteMovieBack[]>{
-    return this.http.get<FavoriteMovieBack[]>(`http://localhost:8080/favorites/all`)
+  getAllFavorites(username:String):Observable<FavoriteMovieBack[]>{
+    return this.http.get<FavoriteMovieBack[]>(`http://localhost:8080/favorites/all/${username}`)
   }
 }

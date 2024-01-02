@@ -22,12 +22,13 @@ export class SignFormsComponent implements OnInit{
   usersBackTest:User[]=[];
 
   userFront!:User;
-  userFrontRout!:User;
+  userFrontRout:User={username:"",email:"",password:""};
 
 
   userExists!:boolean
 
   userFound!:boolean
+  transition!:boolean
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,7 @@ export class SignFormsComponent implements OnInit{
   }
 
   addUser() {
+    this.getAllUsersFromBackEnd();
     this.userFront = {
       username: this.entredUserName,
       email: this.entredEmail,
@@ -55,15 +57,21 @@ export class SignFormsComponent implements OnInit{
     if (userExistsInList) {
       this.userExists = true;
       console.log("User exists");
-    } else {
+      this.entredUserName = '';
+    this.entredEmail = '';
+    this.entredPassword = '';
+    } else if(this.userFront.email&&this.userFront.password&&this.userFront.username){
       // Add the user to the backend
       this.addUsertoBackEnd(this.userFront);
       this.userExists = false;
+      this.transition = false
 
       
       // Refresh the list of users after adding a new user
       this.getAllUsersFromBackEnd();
     }
+    this.getAllUsersFromBackEnd();
+
   }
 
   signIn(){
@@ -153,6 +161,7 @@ export class SignFormsComponent implements OnInit{
       (response: User[]) => {
         this.usersBack=response;
         console.log("getting all users from backend")
+        console.log("usersBack "+this.usersBack)
         console.log(this.usersBack)
 
       },

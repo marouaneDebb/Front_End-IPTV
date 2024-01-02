@@ -18,6 +18,10 @@ export class NaveBarComponent {
     this.router.navigate(['/favorites',this.username]);
   
   }
+  gottoHome(){
+    this.router.navigate(['/home',this.username]);
+
+  }
 
 }
 

@@ -64,7 +64,8 @@ export class MovieDetailsComponent implements OnInit {
     if(this.commentText!=""){this.newComment = {
       comment_Text: this.commentText,
       comment_Date: localDate,
-      movieID:this.movieId
+      movieID:this.movieId,
+      username:this.username
     };
     this.addCommetToBackend(this.newComment)
     this.comments.push(this.newComment);
@@ -121,27 +122,40 @@ export class MovieDetailsComponent implements OnInit {
       }
     )
   }
-  getFavoriteFromBackend(movieID: number){
-    this.favoriteService.getFavoriteByMovieID(movieID).subscribe(
+  getFavoriteFromBackend(movieID: number) {
+    console.log("in the getFavoriteFromBackend function");
+    console.log("the user name is " + this.username);
+  
+    this.favoriteService.getFavoriteByMovieID(movieID, this.username).subscribe(
       (response: FavoriteMovieBack) => {
-        this.FavoriteBack=response;
-        if(this.FavoriteBack.movieID!=null){
-          this.isFavorite= true
+        console.log("Response from getFavoriteByMovieID:", response);
+      
+        // Add other logging for debugging if needed
+      
+        if (response && response.movieID) {
+          this.isFavorite = true;
+          console.log("isFavorite is set to true");
+        } else {
+          this.isFavorite = false;
+          console.log("isFavorite is set to false");
         }
-        console.log("value of from backend"+this.FavoriteBack.movieID);
-
-        console.log("getting favorite from backend")
+      
+        console.log("Value of isFavorite after setting:", this.isFavorite);
+      
+        console.log("getting favorite from backend ana");
       },
+      
       (error: HttpErrorResponse) => {
-        alert(error.message)
+        console.error("Error in getFavoriteByMovieID:", error);
+        alert(error.message);
       }
     );
-
-    
+    console.log("the value of FavoriteBack is " + this.FavoriteBack);
   }
+  
 
   getAllFavoritesFromBackend(){
-    this.favoriteService.getAllFavorites().subscribe(
+    this.favoriteService.getAllFavorites(this.username).subscribe(
       (response: FavoriteMovieBack[]) => {
         this.favorites=response;
         console.log("getting favorites from backend")
@@ -153,8 +167,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
 deleteFavoriteFromBackend(movieID: number){
-    this.favoriteService.deleteFavoriteByMovieID(movieID).subscribe(
+    this.favoriteService.deleteFavoriteByMovieID(movieID,this.username).subscribe(
       (response: FavoriteMovieBack) => {
+        this.isFavorite=false
 
         console.log("deleting favorite from backend")
       },
@@ -171,7 +186,8 @@ deleteFavoriteFromBackend(movieID: number){
   
     if (this.isFavorite) {
       const newFavorite: FavoriteMovieBack = {
-        movieID: this.movieId
+        movieID: this.movieId,
+        username:this.username
       };
       this.addFavoriteToBackend(newFavorite);
   

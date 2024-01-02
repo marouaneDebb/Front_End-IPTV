@@ -30,15 +30,17 @@ export class FavoritePageComponent implements OnInit{
     private movieservice: movieservice, private favoriteService: FavoriteService
   ) {}
   ngOnInit(): void {
-    this.getAllFavoritesFromBackend();
     this.searchedMovieList = this.moviesList
     this.route.params.subscribe((params) => {
       this.username = params['username'];})
+      this.getAllFavoritesFromBackend();
+
 
   }
 
   getAllFavoritesFromBackend(){
-    this.favoriteService.getAllFavorites().subscribe(
+    console.log("this is the username from favorite page "+ this.username)
+    this.favoriteService.getAllFavorites(this.username).subscribe(
       (response: FavoriteMovieBack[]) => {
         this.favorites=response;
         this.getAllMovieDetail(this.favorites)
